@@ -31,8 +31,9 @@ protected:
 	
 	// Called when the game starts or when spawned 在游戏开始或生成时调用
 	virtual void BeginPlay() override;
-
-	void MoveForward(float Value); 
+	//提前在.h文件中声明
+	void MoveForward(float Value); //Value的值正数表上前进，负数表示后退
+	void MoveRight(float Value);
 	
 public:	
 	// Called every frame 调用每一帧

@@ -33,11 +33,18 @@ void ASLCharacter::BeginPlay()
 	
 }
 
+// 实现角色向前移动
 void ASLCharacter::MoveForward(float Value)
 {
+	// 朝某个方向前进value，GetActorForwardVector指向角色正前方
 	AddMovementInput(GetActorForwardVector(), Value);
 }
 
+// 实现角色左右移动
+void ASLCharacter::MoveRight(float Value)
+{
+	AddMovementInput(GetActorRightVector(), Value);
+}
 
 // Called every frame
 void ASLCharacter::Tick(float DeltaTime)
@@ -51,7 +58,10 @@ void ASLCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	// “UE中调用的名称”，this指针表示移动这个角色，&自定义移动方法
 	PlayerInputComponent->BindAxis("MoveForward", this, &ASLCharacter::MoveForward);
+
+	PlayerInputComponent->BindAxis("MoveRight", this, &ASLCharacter::MoveRight);
 
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput); //Yaw控制转向
 }
